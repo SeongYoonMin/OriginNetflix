@@ -56,11 +56,17 @@ export default function Banner() {
     );
   } else {
     return (
-    <Container>
-      <HomeConatiner>
-        
-      </HomeConatiner>
-    </Container>
+      <Container>
+        <HomeConatiner>
+          <Iframe
+            src={`https://www.youtube.com/embed/${movie.videos.results[0].key}?controls=0&autoplay=1&loop=1&mute=1&playlist=${movie.videos.results[0].key}`}
+            width="640"
+            height="360"
+            frameBorder="0"
+            allow="autoplay; fullscreen"
+          ></Iframe>
+        </HomeConatiner>
+      </Container>
     );
   }
 }
@@ -79,6 +85,23 @@ const HomeConatiner = styled.div`
   height: 100%;
 `;
 
+const Iframe = styled.iframe`
+  margin-top: 110px;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.65;
+  border: none;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+`;
+
 const BannerHeader = styled.header`
   background-image: ${(props) =>
     `url("https://image.tmdb.org/t/p/original/${props.movie.backdrop_path}")`};
@@ -88,7 +111,6 @@ const BannerHeader = styled.header`
   object-fit: contain;
   height: 448px;
   @media (min-width: 1500px) {
-    position: relative;
     height: 600px;
   }
   display: flex;
