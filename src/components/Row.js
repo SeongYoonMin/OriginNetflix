@@ -21,7 +21,9 @@ export default function Row({ isLargeRow, title, id, fetchUrl }) {
       <h2 style={{ paddingLeft: "20px" }}>{title}</h2>
       <Slider>
         <SliderLeft>
-          <SliderArrow>{"<"}</SliderArrow>
+          <SliderArrow onClick={() => {
+            document.getElementById(id).scrollLeft -= window.innerWidth -80;
+          }}>{"<"}</SliderArrow>
         </SliderLeft>
         <RowPosters id={id}>
           {movies.map((movie) => {
