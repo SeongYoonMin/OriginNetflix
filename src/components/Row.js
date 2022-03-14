@@ -43,7 +43,9 @@ export default function Row({ isLargeRow, title, id, fetchUrl }) {
           })}
         </RowPosters>
         <SliderRight>
-          <SliderArrow>{">"}</SliderArrow>
+          <SliderArrow onClick={() => {
+            document.getElementById(id).scrollLeft -= window.innerWidth -80;
+          }}>{">"}</SliderArrow>
         </SliderRight>
       </Slider>
     </RowBox>
