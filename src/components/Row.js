@@ -1,6 +1,7 @@
 import axios from "../api/axios";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import MovieModal from "./MovieModal/MovieModal";
 
 export default function Row({ isLargeRow, title, id, fetchUrl }) {
   const [movies, setMovies] = useState([]);
@@ -15,6 +16,13 @@ export default function Row({ isLargeRow, title, id, fetchUrl }) {
     setMovies(request.data.results);
   };
 
+  const [modalOpen, setModalOpen] = useState(false);
+  const [movieSelected, setMovieSelected] = useState({});
+
+  const handleClick = (movie) => {
+    setModalOpen(true);
+    setMovieSelected(movie);
+  }
 
   return (
     <RowBox>
@@ -32,12 +40,14 @@ export default function Row({ isLargeRow, title, id, fetchUrl }) {
                 key={movie.id}
                 src={`http://image.tmdb.org/t/p/original/${movie.poster_path}`}
                 alt={movie.name}
+                onClick={() => handleClick(movie)}
               ></RowPosterLarge>
             } else {
               return <RowPoster
                 key={movie.id}
                 src={`http://image.tmdb.org/t/p/original${movie.backdrop_path}`}
                 alt={movie.name}
+                onClick={() => handleClick(movie)}
               />;
             }
           })}
@@ -48,6 +58,11 @@ export default function Row({ isLargeRow, title, id, fetchUrl }) {
           }}>{">"}</SliderArrow>
         </SliderRight>
       </Slider>
+      {
+        modalOpen && (
+          <MovieModal {...movieSelected} setModalOpen={setModalOpen} />
+        )
+      }
     </RowBox>
   );
 }
