@@ -19,7 +19,7 @@ export default function MovieModal({
             X
           </span>
           <img
-            className="modla__poster-img"
+            className="modal__poster-img"
             src={`https://image.tmdb.org/t/p/original/${backdrop_path}`}
             alt={title ? title : name}
           />
