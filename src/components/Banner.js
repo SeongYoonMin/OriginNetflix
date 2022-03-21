@@ -109,7 +109,7 @@ const BannerHeader = styled.header`
   background-size: cover;
   color: white;
   object-fit: contain;
-  height: 448px;
+  height: 450px;
   @media (min-width: 1500px) {
     height: 600px;
   }
